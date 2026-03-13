@@ -461,7 +461,7 @@ export function ShoeTile({
                         ref={titleRef}
                         position={[0, textY, 0.01]}
                         fontSize={0.1}
-                        color="#000"
+                        color="var(--shoe-title-color)"
                         anchorY="top"
                         anchorX="center"
                         maxWidth={2.5}
@@ -474,7 +474,7 @@ export function ShoeTile({
                             ref={priceRef}
                             position={[0, textY - 0.22, 0.01]}
                             fontSize={0.09}
-                            color="#555"
+                            color="var(--shoe-price-color)"
                             anchorY="top"
                             anchorX="center"
                             fillOpacity={0}

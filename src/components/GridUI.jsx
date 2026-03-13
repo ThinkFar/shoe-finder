@@ -56,20 +56,18 @@ export function UnifiedControlBar({
         layout
         transition={islandTransition}
         style={{
-          background:
-            "linear-gradient(135deg, rgba(255, 240, 235, 0.4) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(245, 235, 255, 0.4) 100%)", // Very subtle orange to purple gradient for glassy depth
-          backdropFilter: "blur(40px) saturate(200%)", // Increased blur for more glassy feel
-          WebkitBackdropFilter: "blur(40px) saturate(200%)", // Safari support
+          background: "var(--control-bar-bg)",
+          backdropFilter: "blur(40px) saturate(200%)",
+          WebkitBackdropFilter: "blur(40px) saturate(200%)",
           borderRadius: "32px",
-          border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle white border for glass edge
-          boxShadow:
-            "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5)", // Soft shadow + inner highlight
+          border: "1px solid var(--control-bar-border)",
+          boxShadow: "var(--control-bar-shadow)",
           padding: "6px",
           display: "flex",
           alignItems: "center",
           pointerEvents: "auto",
           height: "56px",
-          overflow: "hidden", // Crucial for clipping content during resize
+          overflow: "hidden",
         }}
       >
         {/* 
@@ -198,10 +196,8 @@ export function UnifiedControlBar({
                 transition={{ delay: 0.1 }}
                 style={{
                   width: "1px",
-                  background: "rgba(0,0,0,0.08)",
+                  background: "var(--control-bar-divider)",
                   margin: "0 2px",
-                  boxShadow:
-                    "0 0 1px rgba(255, 255, 255, 0.3)", // Subtle highlight for glassy feel
                 }}
               />
 
@@ -234,7 +230,7 @@ export function UnifiedControlBar({
                     style={{
                       width: "1px",
                       height: "24px",
-                      background: "rgba(0,0,0,0.08)",
+                      background: "var(--control-bar-divider)",
                       margin: "0 6px",
                       transformOrigin: "center",
                     }}
@@ -290,11 +286,11 @@ export function UnifiedControlBar({
               style={{
                 display: "flex",
                 justifyContent: "center",
-                background: "rgba(255, 255, 255, 0.85)",
+                background: "var(--mobile-filter-bg)",
                 backdropFilter: "blur(40px) saturate(200%)",
                 WebkitBackdropFilter: "blur(40px) saturate(200%)",
                 borderRadius: "20px",
-                border: "1px solid rgba(255, 255, 255, 0.3)",
+                border: "1px solid var(--mobile-filter-border)",
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
                 padding: "6px 8px",
                 gap: "4px",
@@ -406,7 +402,7 @@ function ControlButton({ onClick, icon, label }) {
         borderRadius: "50%",
         border: "none",
         background: "transparent",
-        color: "#111",
+        color: "var(--control-btn-color)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -458,13 +454,13 @@ function TabButton({ children, isActive, onClick }) {
         position: "relative",
         border: "none",
         background: "transparent",
-        color: isActive ? "#000" : "#666",
+        color: isActive ? "var(--tab-active-text)" : "var(--tab-inactive-text)",
         padding: "8px 16px",
         borderRadius: "20px",
         fontSize: "14px",
         fontWeight: "600",
         cursor: "pointer",
-        whiteSpace: "nowrap", // Prevents text wrapping during resize
+        whiteSpace: "nowrap",
         zIndex: 1,
         transition: "color 0.2s ease",
       }}
@@ -477,13 +473,12 @@ function TabButton({ children, isActive, onClick }) {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(255, 255, 255, 0.6)", // Solid background for active state
+            background: "var(--tab-active-bg)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
             borderRadius: "20px",
-            border: "1px solid rgba(255, 255, 255, 0.4)",
-            boxShadow:
-              "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
+            border: "1px solid var(--tab-active-border)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
             zIndex: -1,
           }}
         />
@@ -505,7 +500,7 @@ function FilterChip({ children, isActive, onClick, layoutGroup = "default" }) {
         position: "relative",
         border: "none",
         background: "transparent",
-        color: isActive ? "#fff" : "#555",
+        color: isActive ? "var(--filter-active-text)" : "var(--filter-inactive-text)",
         padding: "6px 12px",
         borderRadius: "14px",
         fontSize: "12px",
@@ -523,7 +518,7 @@ function FilterChip({ children, isActive, onClick, layoutGroup = "default" }) {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0, 0, 0, 0.85)",
+            background: "var(--filter-active-bg)",
             borderRadius: "14px",
             zIndex: -1,
           }}
@@ -534,7 +529,7 @@ function FilterChip({ children, isActive, onClick, layoutGroup = "default" }) {
           style={{
             position: "absolute",
             inset: 0,
-            background: "rgba(0, 0, 0, 0.05)",
+            background: "var(--filter-inactive-bg)",
             borderRadius: "14px",
             zIndex: -1,
           }}

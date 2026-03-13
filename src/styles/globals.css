@@ -53,15 +53,63 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #f0f0f0;
   --foreground: #171717;
+  --canvas-bg: #f0f0f0;
+  --fog-color: #f0f0f0;
+  --bg-line-color: #e0e0e0;
+  --header-text: #000000;
+  --header-subtext: #999999;
+  --header-divider: rgba(0, 0, 0, 0.15);
+  --control-bar-bg: linear-gradient(135deg, rgba(255, 240, 235, 0.4) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(245, 235, 255, 0.4) 100%);
+  --control-bar-border: rgba(255, 255, 255, 0.3);
+  --control-bar-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --control-bar-divider: rgba(0, 0, 0, 0.08);
+  --control-btn-color: #111111;
+  --tab-active-text: #000000;
+  --tab-inactive-text: #666666;
+  --tab-active-bg: rgba(255, 255, 255, 0.6);
+  --tab-active-border: rgba(255, 255, 255, 0.4);
+  --filter-inactive-bg: rgba(0, 0, 0, 0.05);
+  --filter-inactive-text: #555555;
+  --filter-active-bg: rgba(0, 0, 0, 0.85);
+  --filter-active-text: #ffffff;
+  --mobile-filter-bg: rgba(255, 255, 255, 0.85);
+  --mobile-filter-border: rgba(255, 255, 255, 0.3);
+  --shoe-title-color: #000000;
+  --shoe-price-color: #555555;
+  --close-btn-border: rgba(0, 0, 0, 1.2);
+  --close-btn-stroke: rgba(0, 0, 0, 0.8);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.dark {
+  --background: #111111;
+  --foreground: #ededed;
+  --canvas-bg: #111111;
+  --fog-color: #111111;
+  --bg-line-color: #2a2a2a;
+  --header-text: #ffffff;
+  --header-subtext: #666666;
+  --header-divider: rgba(255, 255, 255, 0.12);
+  --control-bar-bg: linear-gradient(135deg, rgba(30, 20, 15, 0.7) 0%, rgba(20, 20, 20, 0.6) 50%, rgba(20, 15, 30, 0.7) 100%);
+  --control-bar-border: rgba(255, 255, 255, 0.08);
+  --control-bar-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --control-bar-divider: rgba(255, 255, 255, 0.1);
+  --control-btn-color: #eeeeee;
+  --tab-active-text: #ffffff;
+  --tab-inactive-text: #888888;
+  --tab-active-bg: rgba(255, 255, 255, 0.1);
+  --tab-active-border: rgba(255, 255, 255, 0.12);
+  --filter-inactive-bg: rgba(255, 255, 255, 0.06);
+  --filter-inactive-text: #aaaaaa;
+  --filter-active-bg: rgba(255, 255, 255, 0.9);
+  --filter-active-text: #000000;
+  --mobile-filter-bg: rgba(20, 20, 20, 0.9);
+  --mobile-filter-border: rgba(255, 255, 255, 0.08);
+  --shoe-title-color: #ffffff;
+  --shoe-price-color: #aaaaaa;
+  --close-btn-border: rgba(255, 255, 255, 0.8);
+  --close-btn-stroke: rgba(255, 255, 255, 0.8);
 }
 
 html,
@@ -87,10 +135,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
