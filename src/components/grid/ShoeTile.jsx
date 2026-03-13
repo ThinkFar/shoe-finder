@@ -11,6 +11,19 @@ import { easing } from "maath";
 import { CONFIG } from "./gridConfig";
 import { rigState } from "./gridState";
 import { CloseButton } from "../CloseButton";
+import { useTheme } from "@/context/ThemeContext";
+
+// Theme colors for Three.js (CSS variables don't work in WebGL)
+const THEME_COLORS = {
+    light: {
+        title: "#1a1a1a",
+        price: "#666666",
+    },
+    dark: {
+        title: "#f5f5f5",
+        price: "#a0a0a0",
+    },
+};
 
 // --- OPTIMIZED COMPONENT: SHOE TILE ---
 export function ShoeTile({
@@ -29,6 +42,8 @@ export function ShoeTile({
     const priceRef = useRef();
     const [hovered, setHovered] = useState(false);
     const texture = useTexture(data.image_url);
+    const { theme } = useTheme();
+    const themeColors = THEME_COLORS[theme] || THEME_COLORS.light;
     // Animation Refs
     const focusZ = useRef(0);
     const rotationX = useRef(0);
@@ -461,7 +476,7 @@ export function ShoeTile({
                         ref={titleRef}
                         position={[0, textY, 0.01]}
                         fontSize={0.1}
-                        color="var(--shoe-title-color)"
+                        color={themeColors.title}
                         anchorY="top"
                         anchorX="center"
                         maxWidth={2.5}
@@ -474,7 +489,7 @@ export function ShoeTile({
                             ref={priceRef}
                             position={[0, textY - 0.22, 0.01]}
                             fontSize={0.09}
-                            color="var(--shoe-price-color)"
+                            color={themeColors.price}
                             anchorY="top"
                             anchorX="center"
                             fillOpacity={0}
