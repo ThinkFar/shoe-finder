@@ -1,6 +1,10 @@
 import React from "react";
 import { useTheme } from "@/context/ThemeContext";
 
+/**
+ * Renders the fixed site header containing the brand mark on the left and navigation controls on the right, including browse/collect items, dividers, quoted label, and a theme toggle.
+ * @returns {JSX.Element} The header element for the site layout.
+ */
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
 
@@ -120,6 +124,14 @@ export default function Header() {
   );
 }
 
+/**
+ * Renders a compact header navigation item with a numeric prefix and a text label that increases opacity on hover.
+ *
+ * @param {Object} props
+ * @param {string} props.label - The visible text label for the nav item (e.g., "BROWSE").
+ * @param {string} props.number - The numeric prefix shown before the label (e.g., "01").
+ * @returns {JSX.Element} The navigation item element.
+ */
 function NavItem({ label, number }) {
   return (
     <div
@@ -160,6 +172,10 @@ function NavItem({ label, number }) {
   );
 }
 
+/**
+ * Render a vertical divider used between header navigation items.
+ * @returns {JSX.Element} A div styled as a 1px-wide, 12px-tall vertical line using the `--header-divider` CSS variable for its background color.
+ */
 function Divider() {
   return (
     <div
@@ -172,6 +188,13 @@ function Divider() {
   );
 }
 
+/**
+ * Renders quoted header navigation text wrapped in typographic quotation marks.
+ *
+ * @param {{text: string}} props - Component props.
+ * @param {string} props.text - The text to display inside typographic quotes.
+ * @returns {JSX.Element} A styled <span> element containing the quoted text for the header navigation.
+ */
 function QuoteText({ text }) {
   return (
     <span
@@ -190,6 +213,14 @@ function QuoteText({ text }) {
   );
 }
 
+/**
+ * Renders a compact theme switch button that reflects the current theme and invokes a handler when clicked.
+ *
+ * @param {{theme: string, onToggle: function}} props
+ * @param {string} props.theme - Current theme identifier; `"dark"` enables the dark appearance.
+ * @param {function} props.onToggle - Callback invoked when the user clicks the toggle.
+ * @returns {JSX.Element} A button element that visually represents and toggles the theme.
+ */
 function ThemeToggle({ theme, onToggle }) {
   const isDark = theme === "dark";
   return (

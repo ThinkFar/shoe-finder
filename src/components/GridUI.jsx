@@ -10,6 +10,20 @@ const islandTransition = {
   mass: 1,
 };
 
+/**
+ * Render a responsive, animated control bar with zoom controls, collection tabs, and Nike filter chips.
+ *
+ * Renders three mutually exclusive island states: a "Buy Now" action when an item is selected; a compact zoom-out button when zoomed in; and an expanded set of controls (zoom-in, collection tabs, and desktop Nike filters) when zoomed out. When the Nike collection is active and not zoomed in, a mobile filter strip is rendered above the bar.
+ * @param {object} props
+ * @param {number} props.currentCollection - Index of the currently selected collection.
+ * @param {(index: number) => void} props.onSwitch - Called with the collection index when a tab is selected.
+ * @param {(trigger: string) => void} props.setZoomTrigger - Called to request zoom changes (e.g., "OUT" or CONFIG.zoomIn).
+ * @param {boolean} props.isZoomedIn - Whether the view is currently zoomed in.
+ * @param {boolean} props.hasActiveSelection - Whether an item is actively selected (shows Buy Now).
+ * @param {string} props.nikeFilter - Active Nike filter id ("all", "jordan", "dunk").
+ * @param {(filterId: string) => void} props.onFilterChange - Called with a Nike filter id when a filter chip is selected.
+ * @returns {JSX.Element} A React element representing the control bar.
+ */
 export function UnifiedControlBar({
   currentCollection,
   onSwitch,
@@ -382,7 +396,15 @@ export function UnifiedControlBar({
   );
 }
 
-// --- Sub-components for cleaner code & isolated animations ---
+/**
+ * Render a circular motion-enabled control button with an icon and interactive hover/tap states.
+ *
+ * @param {Object} props - Component props.
+ * @param {Function} props.onClick - Click handler invoked when the button is pressed.
+ * @param {string} props.icon - Icon variant to render; use `"add"` for a plus icon, any other value renders a minus icon.
+ * @param {string} props.label - Accessible label applied to the button's `aria-label`.
+ * @returns {import('react').ReactElement} A motion-enabled button element styled as a circular control. 
+ */
 
 function ControlButton({ onClick, icon, label }) {
   return (
@@ -444,6 +466,17 @@ function ControlButton({ onClick, icon, label }) {
   );
 }
 
+/**
+ * Renders a tab-styled button that shows an animated active indicator when active.
+ *
+ * The button displays children as its label and animates a background indicator when `isActive` is true.
+ *
+ * @param {object} props
+ * @param {import('react').ReactNode} props.children - Button label or content.
+ * @param {boolean} props.isActive - Whether the tab is active; when true an animated active indicator is rendered behind the label.
+ * @param {() => void} [props.onClick] - Click handler invoked when the tab is pressed.
+ * @returns {JSX.Element} The tab button element.
+ */
 function TabButton({ children, isActive, onClick }) {
   return (
     <motion.button
@@ -487,6 +520,19 @@ function TabButton({ children, isActive, onClick }) {
   );
 }
 
+/**
+ * Render a clickable filter chip with an animated background indicating active or inactive state.
+ *
+ * Renders a motion-enabled button that displays its children as a chip label, animates a background “pill”
+ * when `isActive` is true (coordinated by `layoutGroup`), and applies hover/tap interactions.
+ *
+ * @param {object} props
+ * @param {import('react').ReactNode} props.children - Content shown inside the chip (typically a short label).
+ * @param {boolean} props.isActive - Whether the chip is active; controls the animated active background and text color.
+ * @param {() => void} props.onClick - Click handler invoked when the chip is pressed.
+ * @param {string} [props.layoutGroup="default"] - Identifier used for shared layout animations of the active indicator.
+ * @returns {import('react').ReactElement} A motion-enabled button element representing the filter chip.
+ */
 function FilterChip({ children, isActive, onClick, layoutGroup = "default" }) {
   return (
     <motion.button

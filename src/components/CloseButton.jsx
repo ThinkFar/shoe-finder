@@ -2,6 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import { Html } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
+/**
+ * Render a 3D-positioned close button that appears with a short delay when activated and invokes a callback when clicked.
+ *
+ * @param {Object} props - Component props.
+ * @param {boolean} props.isActive - Whether the close button should be active/visible.
+ * @param {number[]} props.position - 3D position [x, y, z] where the button is placed in the scene.
+ * @param {Function} props.onClose - Callback invoked when the button is clicked.
+ * @returns {JSX.Element|null} A JSX element containing the positioned close button, or `null` when `isActive` is false.
+ */
 export function CloseButton({
   isActive,
   position,

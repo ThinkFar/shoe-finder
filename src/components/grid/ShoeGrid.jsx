@@ -28,7 +28,13 @@ shoes.forEach((shoe) => {
     useTexture.preload(shoe.image_url);
 });
 
-// --- MAIN EXPORT ---
+/**
+ * Render the interactive 3D shoe grid application with collection switching, filters, responsive zooming, and layered enter/exit transitions.
+ *
+ * The component manages collection state (Nike, New Balance, budget), preloads textures, maintains a stack of rendered grid layers to animate transitions, tracks zoom and selection state for UI sync, and wires controls, minimap, and canvas-rendered content together.
+ *
+ * @returns {JSX.Element} The ShoeGrid component's rendered React element.
+ */
 export default function ShoeGrid() {
     const { theme } = useTheme();
     const isDark = theme === "dark";
