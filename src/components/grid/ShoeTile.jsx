@@ -25,7 +25,22 @@ const THEME_COLORS = {
     },
 };
 
-// --- OPTIMIZED COMPONENT: SHOE TILE ---
+/**
+ * Render a 3D shoe tile with image, optional title/price text, hover/focus interactions, and enter/exit animations.
+ *
+ * Renders a textured card that animates on grid visibility, filtering, hover, and focus; updates shared rigState on click to control focus/zoom.
+ *
+ * @param {Object} props
+ * @param {Object} props.data - Item data (expects { image_url, title, price?, randomDelay? }).
+ * @param {number} props.index - Zero-based index of this tile in the grid.
+ * @param {{x:number,y:number}} props.basePos - Base x/y position for the tile in grid coordinates.
+ * @param {boolean} props.gridVisible - Whether the grid is currently visible (controls enter/exit rendering).
+ * @param {number} props.transitionStartTime - Epoch ms when the grid transition was triggered (used for per-item staggering).
+ * @param {boolean} props.interactive - Whether pointer interactions (hover/click) are enabled.
+ * @param {boolean} [props.matchesFilter=true] - Whether this item passes the current filter (affects opacity/scale).
+ * @param {number} props.gridHeight - Total grid height used to normalize vertical enter/exit offsets.
+ * @returns {JSX.Element} The React Three Fiber group representing the shoe tile.
+ */
 export function ShoeTile({
     data,
     index,
