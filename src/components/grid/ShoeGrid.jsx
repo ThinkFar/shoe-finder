@@ -19,6 +19,7 @@ import { GridCanvas } from "./GridCanvas";
 import { UnifiedControlBar } from "../GridUI";
 import Header from "../Header";
 import { TopologyBackground } from "../TopologyBackground";
+import { useTheme } from "@/context/ThemeContext";
 import "../HoloCardMaterial"; // Registers <holoCardMaterial /> with R3F
 
 // --- PRELOAD ALL TEXTURES ---
@@ -29,6 +30,8 @@ shoes.forEach((shoe) => {
 
 // --- MAIN EXPORT ---
 export default function ShoeGrid() {
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
     const [zoomTarget, setZoomTarget] = useState(null);
     const [initialZoom] = useState(DEFAULT_CONFIG.zoomOut);
     const [currentZoom, setCurrentZoom] = useState(
@@ -198,10 +201,10 @@ export default function ShoeGrid() {
             style={{
                 width: "100vw",
                 height: "100vh",
-                backgroundColor: "#f0f0f0",
+                backgroundColor: isDark ? "#111111" : "#f0f0f0",
                 position: "relative",
                 overflow: "hidden",
-                touchAction: "none", // Prevent mobile browser touch gestures
+                touchAction: "none",
             }}
         >
             <Leva collapsed={true} hidden={false} />
@@ -214,15 +217,13 @@ export default function ShoeGrid() {
                     toneMapping: THREE.NoToneMapping,
                 }}
             >
-                {/* Rig is now shared, based on the dimensions of the active grid */}
                 <Rig
                     gridW={activeDims.width}
                     gridH={activeDims.height}
                 />
-                {/* Tech Background - geometric lines and crosshairs for CAD/architectural feel */}
                 <TopologyBackground
                     isZoomedIn={isZoomedIn}
-                    color={CONFIG.bgColor}
+                    color={isDark ? "#2a2a2a" : CONFIG.bgColor}
                     opacity={CONFIG.bgOpacity}
                     speed={CONFIG.bgSpeed}
                     scale={CONFIG.bgScale}
@@ -231,7 +232,7 @@ export default function ShoeGrid() {
                 <fog
                     attach="fog"
                     args={[
-                        "#f0f0f0",
+                        isDark ? "#111111" : "#f0f0f0",
                         controls?.fogNear ?? DEFAULT_CONFIG.fogNear,
                         controls?.fogFar ?? DEFAULT_CONFIG.fogFar,
                     ]}

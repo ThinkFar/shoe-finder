@@ -89,7 +89,7 @@ export function CloseButton({
         style={{
           width: "32px",
           height: "32px",
-          border: "1px solid rgba(0, 0, 0, 1.2)",
+          border: "1px solid var(--close-btn-border)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -117,7 +117,7 @@ export function CloseButton({
           height="14"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="rgba(0, 0, 0, 0.8)"
+          stroke="var(--close-btn-stroke)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
